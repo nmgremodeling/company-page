@@ -1,0 +1,33 @@
+.main {
+    width: 100%;
+    min-height: calc(100svh - var(--nav-height));
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.headerSection {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--padding-large);
+}
+
+.detailsSection {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--padding-large);
+    padding-block: var(--padding-x2large);
+}
+
+/* On small screens remove side padding to use full width */
+@media (max-width: 480px) {
+    .headerSection,
+    .detailsSection {
+        padding-inline: 0;
+    }
+}

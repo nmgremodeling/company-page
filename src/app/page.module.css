@@ -1,0 +1,82 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100svh - var(--nav-height));
+    overflow-y: auto;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: hidden;
+    background-color: rgb(var(--background-color-rgb));
+}
+
+.sectionContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+}
+
+.landingSection {
+    width: 100%;
+}
+
+.slideOutSection {
+    width: 100%;
+    padding-block-end: var(--padding-xlarge);
+}
+
+.workSection {
+    width: 100%;
+    align-self: flex-end;
+    padding-block-start: var(--padding-xlarge);
+}
+
+.trustSection {
+    width: 100%;
+    padding-block: var(--padding-x2large);
+    padding-inline: var(--padding-small);
+}
+
+.chooseSection {
+    width: 100%;
+}
+
+.contactSection {
+    width: 100%;
+    padding-block-start: var(--padding-xlarge);
+    padding-block-end: var(--padding-x2large);
+}
+
+.footer {
+    grid-row-start: 3;
+    display: flex;
+    gap: 24px;
+}
+
+.footer a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer img {
+    flex-shrink: 0;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .ctaButton {
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}

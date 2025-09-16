@@ -1,0 +1,148 @@
+"use client";
+
+import { JSX } from "react";
+import styles from "./style.module.css";
+import {
+    deck,
+    kitchen,
+    bathroom,
+    stairs,
+    downArrow,
+} from "@/features/landing-page";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { AnimatePresence } from "motion/react";
+import * as motion from "motion/react-client";
+
+type ItemProps = {
+    title: string;
+    description: string;
+    image: string;
+    icon: JSX.Element;
+    number: number;
+    openItem: number;
+    setOpenItem: (index: number) => void;
+    href: string;
+};
+
+const Item = ({
+    title,
+    description,
+    image,
+    icon,
+    number,
+    openItem,
+    setOpenItem,
+    href,
+}: ItemProps) => {
+    const handleClick = () => {
+        setOpenItem(number);
+    };
+
+    return number === openItem ? (
+        <AnimatePresence mode="wait">
+            <motion.div
+                className={styles.expandedItem}
+                key={"e-item" + number}
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                exit={{ scaleY: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{ transformOrigin: "top" }}
+            >
+                <Image
+                    className={styles.image}
+                    src={image}
+                    alt={title}
+                    fill
+                    quality={100}
+                    priority
+                    sizes="(max-width: 768px) 100vw, 600px"
+                />
+                <section className={styles.content}>
+                    <section className={styles.textContainer}>
+                        <p className={styles.title}>{title}</p>
+                        <p className={styles.description}>{description}</p>
+                    </section>
+                    <Link href={href} className={styles.ctaLink}>
+                        LEARN MORE
+                    </Link>
+                </section>
+            </motion.div>
+        </AnimatePresence>
+    ) : (
+        <motion.div className={styles.item}>
+            <div className={styles.icon}>{icon}</div>
+            <section className={styles.titleContainer}>
+                {title.split(" ").map((word, index) => (
+                    <h2 className={styles.title} key={title + index}>
+                        {word}
+                    </h2>
+                ))}
+            </section>
+            <button className={styles.arrow} onClick={handleClick}>
+                {downArrow}
+            </button>
+        </motion.div>
+    );
+};
+
+const VerticalSlideout = () => {
+    const [openItem, setOpenItem] = useState(2);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setOpenItem((openItem + 1) % 4);
+        }, 10000);
+
+        return () => clearInterval(interval);
+    }, [openItem]);
+
+    return (
+        <section className={styles.container}>
+            <Item
+                title="Deck Remodeling"
+                description="Custom deck design and construction"
+                image="/projects/charles-deck/after.jpg"
+                icon={deck}
+                number={0}
+                openItem={openItem}
+                setOpenItem={setOpenItem}
+                href="/projects?tab=decks"
+            />
+            <Item
+                title="Kitchen Remodeling"
+                description="Custom deck design and construction"
+                image="/projects/jonesboro-kitchen/after.jpg"
+                icon={kitchen}
+                number={1}
+                openItem={openItem}
+                setOpenItem={setOpenItem}
+                href="/projects?tab=kitchens"
+            />
+            <Item
+                title="Bathroom Remodeling"
+                description="Custom deck design and construction"
+                image="/projects/scott-bathroom/after.jpg"
+                icon={bathroom}
+                number={2}
+                openItem={openItem}
+                setOpenItem={setOpenItem}
+                href="/projects?tab=bathrooms"
+            />
+            <Item
+                title="Basement Remodeling"
+                description="Custom deck design and construction"
+                image="/projects/tefera-basement/after.jpg"
+                icon={stairs}
+                number={3}
+                openItem={openItem}
+                setOpenItem={setOpenItem}
+                href="/projects?tab=basements"
+            />
+        </section>
+    );
+};
+
+export default VerticalSlideout;

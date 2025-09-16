@@ -1,0 +1,134 @@
+.landingSection {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: rgb(var(--background-color-rgb));
+}
+
+.backgroundImageContainer {
+    width: 100%;
+    position: relative;
+    /* Limit hero height on wide screens so CTA stays above the fold */
+    height: clamp(420px, 70vh, 760px);
+}
+
+.backgroundImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--padding-x2large);
+}
+
+.title {
+    font-family: var(--gilroy-font);
+    white-space: pre-line;
+    word-wrap: break-word;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    /* Fluid typography: mobile → desktop */
+    font-size: clamp(2rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    letter-spacing: 1.8px;
+    font-weight: 600;
+}
+
+.title span {
+    color: rgb(var(--accent-color-rgb));
+}
+
+.description {
+    color: rgb(175, 175, 175);
+    width: 25ch;
+    /* Fluid typography */
+    font-size: clamp(0.9rem, 1.2vw, 1.5rem);
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.ctaButton {
+    border: none;
+    background-color: rgb(var(--accent-color-rgb), 0.7);
+    color: white;
+    padding: calc(var(--padding-large) * 1.2) calc(var(--padding-xlarge) * 1.3);
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-family: var(--gilroy-font);
+    /* Fluid button text */
+    font-size: clamp(1rem, 1.3vw, 1.6rem);
+    font-weight: 200;
+    margin-block-end: var(--padding-medium);
+    transition: transform 220ms ease, box-shadow 220ms ease,
+        background-color 220ms ease;
+}
+
+.ctaButton::after {
+    content: "";
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 2px;
+    background-color: white;
+    z-index: 1;
+    transition: width 220ms ease, opacity 220ms ease;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .ctaButton {
+        cursor: pointer;
+    }
+
+    .ctaButton:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        background-color: rgb(var(--accent-color-rgb), 0.85);
+    }
+
+    .ctaButton:hover::after {
+        width: 60%;
+        opacity: 0.9;
+    }
+}
+
+/* Slightly taller for >= 480px while keeping CTA visible */
+@media (min-width: 480px) {
+    .backgroundImageContainer {
+        height: clamp(460px, 72vh, 780px);
+    }
+}
+
+@media (min-width: 1000px) {
+    .backgroundImageContainer {
+        height: clamp(480px, 66vh, 740px);
+    }
+}
+
+@media (min-width: 1600px) {
+    .backgroundImageContainer {
+        height: clamp(500px, 60vh, 700px);
+    }
+}

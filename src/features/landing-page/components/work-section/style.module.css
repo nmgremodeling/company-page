@@ -1,0 +1,111 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--padding-medium);
+    width: 100%;
+}
+
+.titleSection {
+    display: flex;
+    align-self: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    gap: var(--padding-medium);
+    background-color: rgb(var(--background-color-rgb));
+    padding-inline: var(--padding-xlarge);
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--padding-small);
+    background-color: rgb(var(--background-color-rgb));
+    width: min-content;
+}
+
+.textContainer h2 {
+    font-family: var(--gilroy-font);
+    font-weight: 400;
+    color: white;
+    opacity: 0.68;
+    text-align: left;
+    font-size: calc(var(--font-size-medium) * 1);
+    line-height: 1.4;
+    letter-spacing: 1px;
+    width: 20ch;
+    word-wrap: break-word;
+}
+
+.textContainer p {
+    color: #b9b9b9;
+    opacity: 0.68;
+    text-align: left;
+    width: 40ch;
+    font-size: calc(var(--font-size-small) * 0.8);
+    line-height: 1.4;
+    letter-spacing: 1px;
+    word-wrap: break-word;
+}
+
+.titleSection svg {
+    fill: rgb(var(--accent-color-rgb));
+    width: 60px;
+    height: 60px;
+    margin-block-start: var(--padding-xlarge);
+}
+
+.workContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+@media (width < 375px) {
+    .textContainer p {
+        width: 30ch;
+    }
+}
+
+@media (width < 335px) {
+    .textContainer p {
+        font-size: calc(var(--font-size-small) * 0.6);
+    }
+}
+
+@media (width > 768px) {
+    .titleSection {
+        padding-inline: var(--padding-x2large);
+    }
+}
+
+/* Slight bump at tablet widths */
+@media (min-width: 768px) {
+    .textContainer h2 {
+        font-size: var(--font-size-large);
+    }
+    .textContainer p {
+        font-size: var(--font-size-small);
+    }
+}
+
+/* Scale copy for larger screens */
+@media (min-width: 1000px) {
+    .textContainer h2 {
+        font-size: var(--font-size-xlarge);
+    }
+    .textContainer p {
+        font-size: var(--font-size-medium);
+        width: 48ch;
+    }
+    .titleSection svg {
+        width: 72px;
+        height: 72px;
+    }
+}
