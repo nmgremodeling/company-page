@@ -38,6 +38,21 @@ export type Project = {
         alt?: string;
     }[];
 
+    video?: {
+        src: string;
+        width?: number;
+        height?: number;
+        alt?: string;
+    };
+
+    // Optional array for projects with multiple videos
+    videos?: {
+        src: string;
+        width?: number;
+        height?: number;
+        alt?: string;
+    }[];
+
     testimonial?: {
         quote: string;
         author?: string;
@@ -788,6 +803,12 @@ export const projects: Project[] = [
             alt: "Finished garage addition with extended driveway",
             width: 2048,
             height: 1536,
+        },
+        video: {
+            src: "/projects/suwanne-garage/video-01.MP4",
+            width: 1920,
+            height: 1080,
+            alt: "Walkthrough of the garage addition project",
         },
         gallery: [
             {

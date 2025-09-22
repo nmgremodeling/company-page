@@ -60,9 +60,7 @@ export default async function ProjectDetail({
                     )}
                     {project.description && (
                         <div className={styles.richText}>
-                            <h3 className={styles.sectionHeading}>
-                                Project Overview
-                            </h3>
+                            <h3 className={styles.sectionHeading}>Overview</h3>
                             {project.description
                                 .split("\n\n")
                                 .map((para, i) => (
@@ -130,9 +128,38 @@ export default async function ProjectDetail({
                 </section>
             ) : null}
 
+            {(() => {
+                const videoList = project.videos?.length
+                    ? project.videos
+                    : project.video?.src
+                    ? [project.video]
+                    : [];
+                if (!videoList.length) return null;
+                const heading = videoList.length > 1 ? "Videos" : "Video";
+                return (
+                    <section className={`${styles.video} ${styles.card}`}>
+                        <h3 className={styles.sectionHeading}>{heading}</h3>
+                        {videoList.map((v) => (
+                            <div key={v.src}>
+                                <video
+                                    className={styles.videoPlayer}
+                                    controls
+                                    playsInline
+                                    preload="metadata"
+                                    poster={heroSrc}
+                                >
+                                    <source src={v.src} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        ))}
+                    </section>
+                );
+            })()}
+
             {project.gallery?.length ? (
                 <section className={`${styles.gallery} ${styles.card}`}>
-                    <h3 className={styles.sectionHeading}>Project Gallery</h3>
+                    <h3 className={styles.sectionHeading}>Gallery</h3>
                     {project.gallery.map((g) => (
                         <div key={g.src} className={styles.gItem}>
                             <LightboxImage

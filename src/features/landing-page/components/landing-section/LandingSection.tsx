@@ -21,8 +21,6 @@ const LandingSection = () => {
                         <h1 className={styles.title}>
                             <span>NM&G</span>
                             <br />
-                            HOME
-                            <br />
                             REMODELING
                         </h1>
                         <p className={styles.description}>

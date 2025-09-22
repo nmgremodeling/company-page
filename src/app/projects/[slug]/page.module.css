@@ -15,6 +15,7 @@
 
 .header,
 .beforeAfter,
+.video,
 .gallery,
 .meta {
     width: 100%;
@@ -233,12 +234,14 @@
 /* Section dividers for clean, modern transitions */
 .meta,
 .beforeAfter,
+.video,
 .gallery {
     position: relative;
     padding-top: var(--padding-large);
 }
 .meta::before,
 .beforeAfter::before,
+.video::before,
 .gallery::before {
     content: "";
     position: absolute;
@@ -253,6 +256,15 @@
         rgba(0,0,0,0.03) 70%,
         rgba(0,0,0,0)
     );
+}
+
+/* Video section */
+.videoPlayer {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    background: #000;
 }
 
 .sectionHeading {
